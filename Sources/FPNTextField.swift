@@ -333,6 +333,9 @@ open class FPNTextField: UITextField {
 	@objc private func didEditText() {
 		if let phoneCode = selectedCountry?.phoneCode, let number = text {
 			var cleanedPhoneNumber = clean(string: "\(phoneCode) \(number)")
+            if number.hasPrefix("+") {
+                cleanedPhoneNumber = number
+            }
 
 			if let validPhoneNumber = getValidNumber(phoneNumber: cleanedPhoneNumber) {
 				nbPhoneNumber = validPhoneNumber
